@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Maa Chief Kitchen - Homestyle Gourmet Dining, Executive Chief Culinary Line & Multi-Currency Experience">
+  <title>Maa Chief Kitchen | Homestyle Gourmet & Culinary Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-aurora">
+  <!-- Top Promo Announcement Bar -->
+  <aside class="top-promo-banner" id="promoBanner">
+    <span>🥘 <strong>MAA CHIEF KITCHEN:</strong> Welcome! Enjoy 15% OFF your artisan culinary order! Use code <code>GOURMET15</code>
+      <button class="btn-copy-promo" id="copyPromoBtn" style="margin-left: 0.75rem; padding: 0.25rem 0.65rem; border-radius: 999px; background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,0.45); color: #fff; font-size: 0.75rem; font-weight: 700; cursor: pointer;">✨ Apply 15% OFF</button>
+    </span>
+    <button class="btn-banner-close" id="closePromoBannerBtn" aria-label="Close promo banner">&times;</button>
+  </aside>
+
+  <!-- Master App Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand-badge" id="brandHomeBtn">
+        <div class="brand-icon">
+          <span>🥘</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">MAA <span class="accent-text">CHIEF KITCHEN</span></span>
+          <span class="brand-subtitle">HOMESTYLE GOURMET &amp; ARTISAN DINING</span>
+        </div>
+      </div>
+      <div class="live-status-pill" title="Kitchen Operations Online">
+        <span class="pulse-dot"></span>
+        <span>LIVE</span>
+        <span class="live-clock" id="liveClock">--:--:--</span>
+      </div>
+    </div>
+
+    <!-- PRIMARY ROLE SELECTOR: DINER • CHEF • OWNER -->
+    <div class="role-selector-wrap" id="roleSelectorWrap">
+      <button class="role-btn active" data-role="customer">
+        <span class="role-icon">🍽️</span>
+        <span class="role-label">Guest Dining</span>
+      </button>
+      <button class="role-btn" data-role="chef">
+        <span class="role-icon">👨‍🍳</span>
+        <span class="role-label">Chief Kitchen Line</span>
+        <span class="role-badge" id="chefBadgeCount">4</span>
+      </button>
+      <button class="role-btn" data-role="owner">
+        <span class="role-icon">👑</span>
+        <span class="role-label">Owner Suite</span>
+      </button>
+    </div>
+
+    <!-- Header Actions, Currency & Bag -->
+    <div class="header-actions">
+      <!-- Universal Multi-Currency Selector -->
+      <div class="currency-picker-wrap" title="Select Preferred Currency for Menu & Checkout">
+        <span class="currency-label-icon">🌐</span>
+        <select id="currencySelect" class="currency-dropdown" aria-label="Preferred Currency">
+          <option value="USD" selected>🇺🇸 USD ($)</option>
+          <option value="EUR">🇪🇺 EUR (€)</option>
+          <option value="GBP">🇬🇧 GBP (£)</option>
+          <option value="INR">🇮🇳 INR (₹)</option>
+          <option value="JPY">🇯🇵 JPY (¥)</option>
+          <option value="AED">🇦🇪 AED (د.إ)</option>
+          <option value="CAD">🇨🇦 CAD ($)</option>
+          <option value="AUD">🇦🇺 AUD ($)</option>
+          <option value="CHF">🇨🇭 CHF (Fr)</option>
+          <option value="SGD">🇸🇬 SGD ($)</option>
+        </select>
+      </div>
+
+      <!-- Aesthetic Theme Switcher -->
+      <div class="theme-selector-wrap" title="Switch Aesthetic Color Theme">
+        <button class="theme-dot-btn theme-dot-aurora active" data-theme="aurora" title="Aurora Cyber (Vibrant)"></button>
+        <button class="theme-dot-btn theme-dot-sunset" data-theme="sunset" title="Sunset Bistro (Warm Rose & Amber)"></button>
+        <button class="theme-dot-btn theme-dot-neon" data-theme="neon" title="Neon Night (Cyberpunk Violet & Cyan)"></button>
+        <button class="theme-dot-btn theme-dot-emerald" data-theme="emerald" title="Emerald Garden (Lush Mint & Jade)"></button>
+      </div>
+
+      <!-- Sound Chimes Toggle -->
+      <button class="btn-action btn-audio" id="audioToggleBtn" title="Toggle Sound Chimes">
+        <span id="audioIcon">🔔</span>
+        <span class="action-label" id="audioStatusText">Sound On</span>
+      </button>
+
+      <!-- Live Order Simulator Trigger -->
+      <button class="btn-action" id="simulateCustomerBtn" title="Simulate a new incoming dining ticket" style="background: rgba(99,102,241,0.18); border-color: rgba(99,102,241,0.4); color: #818cf8;">
+        <span>⚡</span>
+        <span class="action-label">+ Order</span>
+      </button>
+
+      <!-- Cart Drawer Trigger Button in Header -->
+      <button class="btn-cart-trigger" id="headerCartTriggerBtn" title="View Order Basket">
+        <span class="cart-btn-icon">🛍️</span>
+        <span class="cart-btn-text">Bag</span>
+        <span class="cart-btn-badge" id="headerCartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container" id="mainContainer">
+    <!-- Adaptive Top Metrics Bar for Active Role -->
+    <div class="metrics-bar" id="metricsBar"></div>
+
+    <!-- ====================================================================
+         SECTION 1: GUEST DINING & RESTAURANT EXPERIENCE (PEOPLE LIKED!)
+         ==================================================================== -->
+    <section class="portal-section active" id="portalCustomer">
+      <!-- Aesthetic Restaurant Hero Banner with Master Chief Showcase -->
+      <div class="restaurant-hero-card">
+        <div class="hero-split-layout">
+          <div class="hero-content">
+            <div class="hero-tag-row">
+              <span class="hero-tag">🌟 Maa Chief Kitchen • Pure Culinary Love</span>
+              <span class="hero-tag-light">🟢 Open Now • Fresh to Order</span>
+              <span class="hero-tag-light" id="heroCurrencyBadge">💵 Currency: 🇺🇸 USD ($)</span>
+            </div>
+            <h1 class="hero-title">Maa Chief Kitchen – Authentic Gourmet Crafted With Love</h1>
+            <p class="hero-subtitle">Homestyle warmth meets modern artisan mastery. Savor authentic slow-simmered specialties, prime Wagyu ribeye, wood-fired hearth pizzas, and handcrafted desserts in your preferred currency.</p>
+            
+            <div class="hero-perks-row">
+              <div class="perk-item">
+                <span class="perk-icon">⭐</span>
+                <div>
+                  <strong>4.92 / 5.0 Rating</strong>
+                  <span>1,240+ verified diner reviews</span>
+                </div>
+              </div>
+              <div class="perk-item">
+                <span class="perk-icon">⏱️</span>
+                <div>
+                  <strong>12 - 18 Min Fresh Prep</strong>
+                  <span>Fired directly on line</span>
+                </div>
+              </div>
+              <div class="perk-item">
+                <span class="perk-icon">🌿</span>
+                <div>
+                  <strong>100% Organic Produce</strong>
+                  <span>Direct farm-to-table sourcing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ATTRACTIVE CHIEF IMAGE SHOWCASE HOLDING SIGNATURE DISHES -->
+          <div class="hero-chief-showcase">
+            <div class="chief-image-frame">
+              <img src="chef-presentation.jpg" alt="Maa Chief Kitchen Master Chef presenting gourmet artisan dishes" class="chief-hero-img" loading="eager" />
+              <div class="chief-floating-badge chief-badge-top">
+                <span class="badge-dot-live"></span>
+                <span>🔥 Fired Fresh on the Line</span>
+              </div>
+              <div class="chief-floating-badge chief-badge-bottom">
+                <div class="chief-badge-avatar">👨‍🍳</div>
+                <div class="chief-badge-info">
+                  <strong>Master Executive Chief</strong>
+                  <span>Proudly Serving Maa's Signature Dishes</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Sub-Nav: Menu & Order vs. My Live Order Tracker -->
+      <div class="customer-subnav-bar">
+        <div class="customer-subnav">
+          <button class="customer-subtab active" data-subview="custMenu">
+            <span>🍽️</span> Explore Menu &amp; Order
+          </button>
+          <button class="customer-subtab" data-subview="custTracker">
+            <span>📍</span> My Live Order Tracker (<span id="custActiveOrderCount">1</span>)
+          </button>
+        </div>
+
+        <!-- Quick Diner Search -->
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="menuSearchInput" placeholder="Search dishes, ingredients...">
+        </div>
+      </div>
+
+      <!-- Subview A: Menu & Cart Layout -->
+      <div class="customer-subview active" id="custMenuView">
+        <div class="restaurant-menu-layout">
+          <!-- Catalog Side -->
+          <div class="catalog-section">
+            <!-- Category Pills Bar -->
+            <div class="menu-control-bar">
+              <div class="category-tabs" id="menuCatTabs">
+                <button class="cat-pill active" data-cat="all">✨ All Specialties</button>
+                <button class="cat-pill" data-cat="grill">🥩 Charcoal Grill</button>
+                <button class="cat-pill" data-cat="mains">🦐 Chef Mains</button>
+                <button class="cat-pill" data-cat="oven">🍕 Hearth Oven</button>
+                <button class="cat-pill" data-cat="starters">🥗 Starters &amp; Bowls</button>
+                <button class="cat-pill" data-cat="desserts">🍮 Pastry &amp; Sweets</button>
+                <button class="cat-pill" data-cat="drinks">🍹 Artisan Drinks</button>
+              </div>
+            </div>
+
+            <!-- Mouth-Watering Dishes Cards Grid -->
+            <div class="dishes-cards-grid" id="dishesGrid">
+              <!-- Dynamically populated with photography by app.js -->
+            </div>
+
+            <!-- Loved by Diners / Testimonials Section -->
+            <div class="diner-reviews-section">
+              <div class="reviews-header">
+                <h3>💬 What Our Diners Are Saying</h3>
+                <span class="hint-text">Verified guest experiences</span>
+              </div>
+              <div class="reviews-grid">
+                <div class="review-card glass">
+                  <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                  <p class="review-quote">“The Truffle Wagyu Ribeye is out of this world! Melt-in-your-mouth tenderness, perfectly seasoned with bone marrow butter.”</p>
+                  <div class="review-author">
+                    <div class="author-avatar">SJ</div>
+                    <div>
+                      <strong>Sarah Jenkins</strong>
+                      <span>Table 02 • Verified Diner</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="review-card glass">
+                  <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                  <p class="review-quote">“The best wood-fired pizza in the city! Sourdough crust has the perfect chew and blister, and the burrata is unbelievably fresh.”</p>
+                  <div class="review-author">
+                    <div class="author-avatar">MC</div>
+                    <div>
+                      <strong>Michael Chen</strong>
+                      <span>Table 07 • Verified Diner</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="review-card glass">
+                  <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                  <p class="review-quote">“Fast service, exquisite cocktails, and the molten chocolate soufflé was unforgettable. We'll be back every month!”</p>
+                  <div class="review-author">
+                    <div class="author-avatar">PP</div>
+                    <div>
+                      <strong>Priya Patel</strong>
+                      <span>VIP Chef Suite • Verified Diner</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sticky Order Basket & Checkout Drawer Panel -->
+          <aside class="order-cart-panel glass" id="orderCartPanel">
+            <div class="cart-header">
+              <div>
+                <h3>🛍️ Your Order Basket</h3>
+                <span class="cart-subtext">Table 04 • Smart Dining</span>
+              </div>
+              <span class="cart-badge-count" id="cartCountBadge">0 items</span>
+            </div>
+
+            <!-- Dining Type Option -->
+            <div class="dining-type-selector">
+              <button class="dining-pill active" data-type="Dine-In">🍽️ Dine-In</button>
+              <button class="dining-pill" data-type="Delivery">🛵 Home Delivery</button>
+              <button class="dining-pill" data-type="Takeaway">🛍️ Pick-Up</button>
+              <button class="dining-pill" data-type="VIP">👑 VIP Chef Suite</button>
+            </div>
+
+            <!-- Home Delivery Address Panel (Active when Delivery is selected) -->
+            <div class="delivery-address-panel" id="deliveryAddressPanel" style="display: none;">
+              <div class="delivery-panel-header">
+                <span class="delivery-badge-icon">🛵</span>
+                <div>
+                  <strong>Home Delivery Destination</strong>
+                  <span class="delivery-est-time">Est. Arrival: 25 - 35 mins</span>
+                </div>
+              </div>
+              <div class="form-group" style="margin-top: 0.65rem;">
+                <label for="deliveryStreet">Delivery Home Address *</label>
+                <input type="text" id="deliveryStreet" placeholder="House / Flat No, Street Address, Landmark" />
+              </div>
+              <div class="form-row-2" style="margin-top: 0.5rem;">
+                <div class="form-group">
+                  <label for="deliveryPhone">Contact Phone *</label>
+                  <input type="tel" id="deliveryPhone" placeholder="Mobile / Phone number" />
+                </div>
+                <div class="form-group">
+                  <label for="deliveryDoorNotes">Delivery Note</label>
+                  <input type="text" id="deliveryDoorNotes" placeholder="e.g. Leave at door, ring bell" />
+                </div>
+              </div>
+              <div class="dispatch-from-note">
+                <span class="dispatch-pin">📍 Dispatched from:</span>
+                <strong id="dispatchKitchenAddressDisplay">Maa Chief Kitchen, 42 Culinary Blvd, Gourmet Haven</strong>
+              </div>
+            </div>
+
+            <!-- Cart Items Container -->
+            <div class="cart-items-container" id="cartItemsContainer">
+              <div class="cart-empty-state">
+                <div class="empty-emoji">🍳</div>
+                <h4>Your basket is empty</h4>
+                <p>Choose your favorite dishes from the menu to build your meal.</p>
+              </div>
+            </div>
+
+            <!-- Gratuity / Kitchen Tip Selection -->
+            <div class="cart-tip-group">
+              <label>Add Kitchen Gratuity</label>
+              <div class="tip-pills" id="tipPills">
+                <button class="tip-pill active" data-tip="0">None</button>
+                <button class="tip-pill" data-tip="10">10%</button>
+                <button class="tip-pill" data-tip="15">15%</button>
+                <button class="tip-pill" data-tip="20">20%</button>
+              </div>
+            </div>
+
+            <!-- Chef Dietary Notes -->
+            <div class="cart-notes-group">
+              <label for="cartChefNotes">Chef / Dietary Notes</label>
+              <input type="text" id="cartChefNotes" placeholder="e.g. Nut allergy, dressing on the side...">
+            </div>
+
+            <!-- Pricing Breakdown in Preferred Currency -->
+            <div class="cart-checkout-box">
+              <div class="pricing-row">
+                <span>Subtotal</span>
+                <strong id="cartSubtotal">$0.00</strong>
+              </div>
+              <div class="pricing-row" id="deliveryFeeRow" style="display:none;">
+                <span>🛵 Home Delivery Fee</span>
+                <span id="cartDeliveryFee">$2.50</span>
+              </div>
+              <div class="pricing-row">
+                <span>Kitchen Service &amp; Tax (10%)</span>
+                <span id="cartTax">$0.00</span>
+              </div>
+              <div class="pricing-row" id="tipRow" style="display:none;">
+                <span>Kitchen Tip</span>
+                <span id="cartTip">$0.00</span>
+              </div>
+              <div class="pricing-row total-row">
+                <span>Total Amount (<span class="currency-code-span">USD</span>)</span>
+                <strong class="total-amount" id="cartTotal">$0.00</strong>
+              </div>
+
+              <button class="btn-checkout-order" id="placeOrderBtn" disabled>
+                <span>🔥 Confirm &amp; Place Order</span>
+              </button>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Subview B: Customer Live Order Tracker -->
+      <div class="customer-subview" id="custTrackerView">
+        <div class="tracker-header-box">
+          <div>
+            <h2>📍 Live Cooking Tracker for Your Order</h2>
+            <p class="section-desc">Watch real-time culinary progression as the chef prepares and fires your dishes.</p>
+          </div>
+        </div>
+        <div class="tracker-cards-container" id="custTrackerList">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 2: EXECUTIVE CHEF PORTAL (MAA CHIEF KITCHEN & RECIPES)
+         ==================================================================== -->
+    <section class="portal-section" id="portalChef">
+      <div class="chef-portal-header">
+        <div>
+          <span class="chef-role-pill">👨‍🍳 Maa Chief Executive Culinary Suite</span>
+          <h2>Maa Chief Kitchen Line &amp; Recipe Studio</h2>
+          <p class="section-desc">Manage active orders, fire kitchen stations, stock fresh ingredients, and craft new signature dishes for the live guest menu.</p>
+        </div>
+        <div class="chef-header-actions">
+          <button class="btn-primary-glow" id="chefOpenAddDishBtn">
+            <span>✨ + Add New Dish to Menu</span>
+          </button>
+          <button class="btn-secondary" id="chefSimulateTicketBtn">+ Fire Test Ticket</button>
+        </div>
+      </div>
+
+      <!-- Chief Subnav Bar (Orders vs Live Menu Studio) -->
+      <div class="chef-subnav-bar">
+        <div class="chef-subnav">
+          <button class="chef-subtab active" data-chef-view="orders">
+            <span>🔥</span> Active Cooking Line (<span id="chefOrdersCountBadge">4</span>)
+          </button>
+          <button class="chef-subtab" data-chef-view="menu">
+            <span>🥘</span> Chief's Live Menu &amp; Specials (<span id="chefDishesCountBadge">12</span> items)
+          </button>
+        </div>
+      </div>
+
+      <!-- Station Load Thermal Strip -->
+      <div class="chef-stations-strip" id="chefStationsStrip">
+        <!-- Rendered by app.js -->
+      </div>
+
+      <!-- CHIEF SUBVIEW 1: COOKING ORDERS & PANTRY SPLIT -->
+      <div class="chef-subview active" id="chefOrdersView">
+        <div class="chef-content-split">
+          <div class="chef-orders-column">
+            <div class="sub-section-header">
+              <h3>🔥 Active Cooking Line Orders (<span id="chefOrdersCount">4</span>)</h3>
+              <div class="tracker-filter-pills">
+                <button class="filter-chip active" data-chef-filter="all">All Active</button>
+                <button class="filter-chip" data-chef-filter="prepping">In Prep</button>
+                <button class="filter-chip" data-chef-filter="cooking">Cooking</button>
+                <button class="filter-chip" data-chef-filter="ready">Ready to Serve</button>
+              </div>
+            </div>
+            <div class="tracker-cards-container" id="chefOrderCardsContainer">
+              <!-- Rendered by app.js -->
+            </div>
+          </div>
+
+          <!-- Chef Pantry & 86'd Quick Watch Column (CARDS, NO TABLE!) -->
+          <aside class="chef-pantry-column glass">
+            <div class="sub-section-header">
+              <h3>📦 Fresh Pantry Quick 86'd Watch</h3>
+              <button class="btn-mini-action" id="chefRestockAllBtn">🔄 Restock All</button>
+            </div>
+            <p class="hint-text" style="margin-bottom: 0.85rem;">Click any ingredient to instantly toggle 86'd (sold out) across the customer menu.</p>
+            <div class="chef-pantry-mini-grid" id="chefPantryMiniGrid">
+              <!-- Cards rendered by app.js -->
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- CHIEF SUBVIEW 2: CHIEF'S LIVE MENU & DISH MANAGEMENT -->
+      <div class="chef-subview hidden" id="chefMenuView">
+        <div class="chef-menu-toolbar">
+          <div class="toolbar-left">
+            <h3>🥘 Live Dishes in Maa Chief Kitchen (<span id="chefDishesCount">12</span>)</h3>
+            <p class="section-desc">Chief can add new dishes, toggle availability (86'd), or modify items in real time.</p>
+          </div>
+          <div class="toolbar-right">
+            <button class="btn-primary-glow" id="chefCreateDishBtn2">
+              <span>✨ + Add New Dish to Menu</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Category Filter Pills for Chief -->
+        <div class="menu-control-bar" style="margin-bottom: 1.25rem;">
+          <div class="category-tabs" id="chefCatTabs">
+            <button class="cat-pill active" data-chef-cat="all">✨ All Dishes</button>
+            <button class="cat-pill" data-chef-cat="mains">🥘 Chef Mains</button>
+            <button class="cat-pill" data-chef-cat="grill">🥩 Charcoal Grill</button>
+            <button class="cat-pill" data-chef-cat="oven">🍕 Hearth Oven</button>
+            <button class="cat-pill" data-chef-cat="starters">🥗 Starters</button>
+            <button class="cat-pill" data-chef-cat="desserts">🍮 Sweets</button>
+            <button class="cat-pill" data-chef-cat="drinks">🍹 Artisan Drinks</button>
+          </div>
+        </div>
+
+        <!-- Chief's Admin Cards Grid -->
+        <div class="chef-dishes-admin-grid" id="chefDishesAdminGrid">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 3: RESTAURANT OWNER & EXECUTIVE MANAGEMENT SUITE
+         ==================================================================== -->
+    <section class="portal-section" id="portalOwner">
+      <div class="owner-portal-header">
+        <div>
+          <span class="owner-role-pill">👑 Executive Owner Suite</span>
+          <h2>Financial Dashboard &amp; Business Intelligence</h2>
+          <p class="section-desc">Track real-time gross revenue, net profit margins, labor &amp; food costs in your preferred currency: <strong id="ownerCurrencyDisplay">USD ($)</strong>.</p>
+        </div>
+        <div class="owner-header-actions">
+          <button class="btn-secondary" id="ownerDiscountToggleBtn">⚡ Apply 15% Happy Hour Promo</button>
+          <button class="btn-primary" id="ownerExportBtn">📥 Export Financial Report</button>
+        </div>
+      </div>
+
+      <!-- Financial KPI Cards (Dynamic Currency Calculation) -->
+      <div class="owner-kpi-grid">
+        <div class="owner-kpi-card">
+          <span class="kpi-icon">💰</span>
+          <div class="kpi-data">
+            <span class="kpi-label">Today's Gross Sales</span>
+            <span class="kpi-value" id="kpiGrossSales">$4,820.00</span>
+            <span class="kpi-trend positive">↑ 14.2% vs yesterday</span>
+          </div>
+        </div>
+        <div class="owner-kpi-card">
+          <span class="kpi-icon">📈</span>
+          <div class="kpi-data">
+            <span class="kpi-label">Estimated Net Profit (68%)</span>
+            <span class="kpi-value" id="kpiNetProfit">$3,277.60</span>
+            <span class="kpi-trend positive">High Margin Benchmark</span>
+          </div>
+        </div>
+        <div class="owner-kpi-card">
+          <span class="kpi-icon">🧾</span>
+          <div class="kpi-data">
+            <span class="kpi-label">Average Order Value (AOV)</span>
+            <span class="kpi-value" id="kpiAvgOrderValue">$48.20</span>
+            <span class="kpi-trend neutral">Across 100 guest orders</span>
+          </div>
+        </div>
+        <div class="owner-kpi-card">
+          <span class="kpi-icon">🥩</span>
+          <div class="kpi-data">
+            <span class="kpi-label">Food &amp; Beverage Cost</span>
+            <span class="kpi-value" id="kpiFoodCost">$1,156.80</span>
+            <span class="kpi-trend positive">24% of Gross (Optimal &lt; 28%)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Owner Analytics & Profitability Split -->
+      <div class="owner-analytics-grid">
+        <!-- Top Revenue Dishes -->
+        <div class="card-analytics">
+          <div class="card-title-row">
+            <h3>🏆 Dish Revenue &amp; Profit Ranking</h3>
+            <span class="hint-text">Gross Sales in <span class="currency-code-span">USD</span></span>
+          </div>
+          <div class="top-dishes-list" id="ownerTopDishesList">
+            <!-- Dynamically populated in selected currency by app.js -->
+          </div>
+        </div>
+
+        <!-- Multi-Currency Global Conversion Table -->
+        <div class="card-analytics">
+          <div class="card-title-row">
+            <h3>🌍 Today's Sales Across Global Currencies</h3>
+            <span class="hint-text">Live Forex Rates</span>
+          </div>
+          <div class="currency-breakdown-list" id="ownerCurrencyBreakdownList">
+            <!-- Dynamically populated by app.js -->
+          </div>
+        </div>
+
+        <!-- Hourly Throughput & Order Velocity -->
+        <div class="card-analytics" style="grid-column: 1 / -1;">
+          <div class="card-title-row">
+            <h3>📊 Hourly Service Velocity &amp; Revenue Flow</h3>
+            <span class="legend-badge">Peak Rush: 19:30 - 21:00</span>
+          </div>
+          <div class="bar-chart-representation">
+            <div class="chart-col"><div class="bar-col" style="height:25%;"><span id="barVal1">$140</span></div><label>17:00</label></div>
+            <div class="chart-col"><div class="bar-col" style="height:45%;"><span id="barVal2">$380</span></div><label>18:00</label></div>
+            <div class="chart-col"><div class="bar-col" style="height:70%;"><span id="barVal3">$740</span></div><label>18:30</label></div>
+            <div class="chart-col"><div class="bar-col active-hour" style="height:95%;"><span id="barVal4">$1,120</span></div><label>19:30 (NOW)</label></div>
+            <div class="chart-col"><div class="bar-col" style="height:80%;"><span id="barVal5">$960</span></div><label>20:00</label></div>
+            <div class="chart-col"><div class="bar-col" style="height:60%;"><span id="barVal6">$650</span></div><label>20:30</label></div>
+            <div class="chart-col"><div class="bar-col" style="height:35%;"><span id="barVal7">$390</span></div><label>21:00</label></div>
+            <div class="chart-col"><div class="bar-col" style="height:15%;"><span id="barVal8">$160</span></div><label>22:00</label></div>
+          </div>
+        </div>
+
+        <!-- Kitchen Home Location & Delivery Fleet Management -->
+        <div class="card-analytics owner-kitchen-settings-card" style="grid-column: 1 / -1;">
+          <div class="card-title-row">
+            <div>
+              <span class="chef-role-pill" style="margin-bottom: 0.35rem;">🏠 Kitchen Headquarters &amp; Delivery Fleet</span>
+              <h3>Kitchen Home Location &amp; Delivery Hub Settings</h3>
+              <p class="section-desc" style="margin-top: 0.2rem;">Configure the kitchen base address, customer dispatch hub, active delivery radius, and fee structure.</p>
+            </div>
+            <div class="live-status-pill">
+              <span class="badge-dot-live"></span>
+              <span>Hub Active &amp; Dispatching</span>
+            </div>
+          </div>
+
+          <form class="kitchen-address-form" id="kitchenAddressForm" onsubmit="return false;">
+            <div class="kitchen-address-grid">
+              <div class="form-group">
+                <label for="ownerKitchenName">Kitchen Brand Name *</label>
+                <input type="text" id="ownerKitchenName" value="Maa Chief Kitchen &amp; Culinary Hearth" />
+              </div>
+              <div class="form-group">
+                <label for="ownerKitchenStreet">Kitchen Street Address *</label>
+                <input type="text" id="ownerKitchenStreet" value="42 Culinary Boulevard, Gourmet Haven" />
+              </div>
+              <div class="form-group">
+                <label for="ownerKitchenLandmark">Suite / Landmark / Building</label>
+                <input type="text" id="ownerKitchenLandmark" value="Level 2, Artisan Food Plaza" />
+              </div>
+              <div class="form-group">
+                <label for="ownerKitchenCity">City, State &amp; Postal Code</label>
+                <input type="text" id="ownerKitchenCity" value="Downtown District, NY 10012" />
+              </div>
+              <div class="form-group">
+                <label for="ownerKitchenPhone">Kitchen Hotline / Dispatch Phone</label>
+                <input type="tel" id="ownerKitchenPhone" value="+1 (555) 789-2433" />
+              </div>
+              <div class="form-group">
+                <label for="ownerDeliveryRadius">Active Delivery Radius</label>
+                <input type="text" id="ownerDeliveryRadius" value="8.5 km (5.3 miles)" />
+              </div>
+              <div class="form-group">
+                <label for="ownerDeliveryFee">Base Delivery Fee (USD $) *</label>
+                <div class="input-with-preview">
+                  <input type="number" id="ownerDeliveryFee" step="0.25" min="0" value="2.50" />
+                  <span class="price-converted-hint" id="ownerDeliveryFeeConverted">≈ $2.50</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="ownerFreeDeliveryMin">Free Delivery Threshold (USD $)</label>
+                <div class="input-with-preview">
+                  <input type="number" id="ownerFreeDeliveryMin" step="1" min="0" value="35.00" />
+                  <span class="price-converted-hint" id="ownerFreeDeliveryConverted">≈ $35.00</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Real-time Live Preview Card of Kitchen Address -->
+            <div class="live-address-preview-box">
+              <div class="preview-address-icon">📍</div>
+              <div class="preview-address-content">
+                <span class="preview-tag">Customer View Preview:</span>
+                <h4 id="previewKitchenFullAddress">Maa Chief Kitchen &amp; Culinary Hearth • 42 Culinary Boulevard, Level 2, Artisan Food Plaza, Downtown District, NY 10012</h4>
+                <p class="preview-sub">Helpline: <strong id="previewKitchenPhone">+1 (555) 789-2433</strong> • Radius: <strong id="previewDeliveryRadius">8.5 km (5.3 miles)</strong> • Standard Delivery: <strong id="previewDeliveryFee">$2.50</strong> (Free on orders over <strong id="previewFreeThreshold">$35.00</strong>)</p>
+              </div>
+              <button type="button" class="btn-primary-glow" id="saveKitchenAddressBtn">
+                <span>✓ Save Kitchen Address &amp; Delivery Settings</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Floating Mobile Cart Button -->
+  <button class="floating-cart-btn" id="floatingCartBtn" title="View Order Basket">
+    <span class="floating-cart-icon">🛍️</span>
+    <span class="floating-cart-text">Order Basket</span>
+    <span class="floating-cart-count" id="floatingCartCount">0</span>
+  </button>
+
+  <!-- Culinary Dish Details Modal -->
+  <div class="modal-overlay" id="dishModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="dish-badge" id="modalDishCategory">Charcoal Grill</span>
+          <h2 id="modalDishName">Truffle Glazed Wagyu Ribeye</h2>
+          <span class="dish-price-tag" id="modalDishPrice">$42.00</span>
+        </div>
+        <button class="modal-close-btn" id="closeDishModalBtn">&times;</button>
+      </div>
+      <div class="modal-body" id="modalDishBody">
+        <!-- populated dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="closeDishModalBtn2">Close</button>
+        <button class="btn-primary" id="modalAddToCartBtn">
+          <span>+ Add to Order Basket</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHIEF ADD NEW DISH MODAL (WITH LIVE PREVIEW) -->
+  <div class="modal-overlay" id="chefAddDishModal">
+    <div class="modal-card chef-add-modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="chef-role-pill">👨‍🍳 Maa Chief Recipe Studio</span>
+          <h2>Add New Dish to Maa Chief Kitchen</h2>
+          <p class="hint-text" style="margin-top:0.25rem;">This dish will immediately go live on the customer menu and kitchen line in all currencies.</p>
+        </div>
+        <button class="modal-close-btn" id="closeChefAddModalBtn">&times;</button>
+      </div>
+
+      <div class="chef-add-modal-grid">
+        <!-- Left: Form inputs -->
+        <form class="chef-dish-form" id="chefAddDishForm" onsubmit="return false;">
+          <div class="form-group">
+            <label for="newDishName">Dish Title *</label>
+            <input type="text" id="newDishName" placeholder="e.g. Maa Special Butter Chicken" required />
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="newDishCategory">Category *</label>
+              <select id="newDishCategory">
+                <option value="mains" selected>🥘 Chef Mains</option>
+                <option value="grill">🥩 Charcoal Grill</option>
+                <option value="oven">🍕 Hearth Oven &amp; Tandoor</option>
+                <option value="starters">🥗 Starters &amp; Bowls</option>
+                <option value="desserts">🍮 Pastry &amp; Sweets</option>
+                <option value="drinks">🍹 Artisan Drinks</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="newDishPrice">Base Price (USD $) *</label>
+              <div class="input-with-preview">
+                <input type="number" id="newDishPrice" step="0.25" min="1" value="18.50" required />
+                <span class="price-converted-hint" id="newDishPriceConverted">≈ ₹1,554 INR</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="newDishTime">Prep Time</label>
+              <input type="text" id="newDishTime" value="12m prep" placeholder="e.g. 10m prep" />
+            </div>
+            <div class="form-group">
+              <label for="newDishBadge">Highlight Badge</label>
+              <select id="newDishBadge">
+                <option value="chef" selected>⭐ Maa's Signature</option>
+                <option value="bestseller">🔥 Guest Favorite / Bestseller</option>
+                <option value="time">🌿 Fresh &amp; Healthy</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Food Emoji Icon</label>
+            <div class="emoji-picker-row">
+              <input type="text" id="newDishEmoji" value="🥘" maxlength="2" style="width: 50px; text-align: center; font-size: 1.3rem;" />
+              <div class="quick-emojis">
+                <button type="button" class="btn-emoji-quick" data-emoji="🥘">🥘</button>
+                <button type="button" class="btn-emoji-quick" data-emoji="🍛">🍛</button>
+                <button type="button" class="btn-emoji-quick" data-emoji="🍗">🍗</button>
+                <button type="button" class="btn-emoji-quick" data-emoji="🍲">🍲</button>
+                <button type="button" class="btn-emoji-quick" data-emoji="🫓">🫓</button>
+                <button type="button" class="btn-emoji-quick" data-emoji="🥩">🥩</button>
+                <button type="button" class="btn-emoji-quick" data-emoji="🍰">🍰</button>
+                <button type="button" class="btn-emoji-quick" data-emoji="🍹">🍹</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="newDishImage">Dish Photography (Image URL)</label>
+            <input type="url" id="newDishImage" value="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=600&q=80" placeholder="https://..." />
+            <div class="photo-presets-row">
+              <span class="preset-label">Quick Presets:</span>
+              <button type="button" class="btn-preset-photo" data-img="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=600&q=80">🥘 Curry Gravy</button>
+              <button type="button" class="btn-preset-photo" data-img="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80">🍛 Dum Biryani</button>
+              <button type="button" class="btn-preset-photo" data-img="https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=600&q=80">🍗 Tandoori Tikka</button>
+              <button type="button" class="btn-preset-photo" data-img="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80">🍮 Sweet Dessert</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="newDishDesc">Culinary Description *</label>
+            <textarea id="newDishDesc" rows="2" placeholder="Rich velvety gravy with roasted ground spices, fresh cream, and fenugreek leaves.">Slow-simmered tender chicken breast in a rich butter, tomato, and cashew nut cream gravy, scented with sun-dried fenugreek.</textarea>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="newDishCalories">Calories</label>
+              <input type="text" id="newDishCalories" value="580 kcal" placeholder="e.g. 520 kcal" />
+            </div>
+            <div class="form-group">
+              <label for="newDishAllergens">Allergens</label>
+              <input type="text" id="newDishAllergens" value="Dairy, Cashews" placeholder="e.g. Dairy, Gluten" />
+            </div>
+          </div>
+        </form>
+
+        <!-- Right: Live Customer Card Preview -->
+        <div class="chef-live-preview-box">
+          <div class="preview-header">
+            <h4>Live Menu Preview</h4>
+            <span class="preview-pill">Matches Guest View</span>
+          </div>
+
+          <div class="dish-card preview-dish-card" id="previewDishCard">
+            <div>
+              <div class="dish-card-img-wrap">
+                <img id="prevImg" src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=600&q=80" alt="Preview" class="dish-card-img" />
+                <div class="dish-img-emoji-badge" id="prevEmoji">🥘</div>
+                <div class="dish-img-floating-badges">
+                  <span class="dish-tag chef" id="prevBadge">⭐ Maa's Signature</span>
+                  <span class="dish-tag time" id="prevTime">⏱️ 12m prep</span>
+                </div>
+              </div>
+
+              <div class="dish-info-block" style="margin-top: 0.4rem;">
+                <h3 id="prevName">Maa Special Butter Chicken</h3>
+                <p class="dish-desc" id="prevDesc">Slow-simmered tender chicken breast in a rich butter, tomato, and cashew nut cream gravy, scented with sun-dried fenugreek.</p>
+              </div>
+            </div>
+
+            <div class="dish-bottom-bar">
+              <span class="dish-price" id="prevPrice">$18.50</span>
+              <button class="dish-add-btn" type="button" disabled>
+                <span>+</span> Add
+              </button>
+            </div>
+          </div>
+
+          <p class="preview-hint">✨ Price updates automatically when guests switch to EUR, GBP, INR, JPY, AED, etc.</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" id="cancelChefAddBtn">Cancel</button>
+        <button class="btn-primary-glow" id="submitChefNewDishBtn">
+          <span>✨ Publish Dish to Live Menu</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHIEF ADJUST DISH PRICE MODAL -->
+  <div class="modal-overlay" id="chefAdjustPriceModal">
+    <div class="modal-card price-adjust-modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="chef-role-pill">💰 Chief Price Adjuster</span>
+          <h2 id="adjustDishTitle">Adjust Item Price</h2>
+          <p class="hint-text" style="margin-top:0.25rem;">Live instant conversion across all 10 world currencies.</p>
+        </div>
+        <button class="modal-close-btn" id="closeAdjustPriceModalBtn">&times;</button>
+      </div>
+
+      <div class="modal-body" style="padding: 0.75rem 0;">
+        <!-- Dish summary banner -->
+        <div class="price-adjust-dish-preview">
+          <div class="adjust-preview-emoji" id="adjustDishEmoji">🥘</div>
+          <div class="adjust-preview-info">
+            <h4 id="adjustDishName">Maa Royal Butter Chicken</h4>
+            <span class="adjust-preview-cat" id="adjustDishCategory">Chef Mains</span>
+          </div>
+        </div>
+
+        <!-- Price Input & Quick Step Buttons -->
+        <div class="form-group" style="margin-top: 1.25rem;">
+          <label for="adjustPriceInput" style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted);">
+            Base Price (USD $) *
+          </label>
+          <div class="adjust-price-input-row">
+            <button type="button" class="btn-step-price" id="btnMinusDollar">- $1.00</button>
+            <div class="price-input-wrap">
+              <span class="currency-symbol-lead">$</span>
+              <input type="number" id="adjustPriceInput" step="0.25" min="0.5" value="18.50" />
+            </div>
+            <button type="button" class="btn-step-price" id="btnPlusDollar">+ $1.00</button>
+          </div>
+        </div>
+
+        <!-- Quick Quick Add Chips -->
+        <div class="quick-price-chips-row">
+          <span class="preset-label">Quick Nudge:</span>
+          <button type="button" class="btn-price-chip" data-delta="-2">- $2.00</button>
+          <button type="button" class="btn-price-chip" data-delta="-0.50">- $0.50</button>
+          <button type="button" class="btn-price-chip" data-delta="0.50">+ $0.50</button>
+          <button type="button" class="btn-price-chip" data-delta="2">+ $2.00</button>
+          <button type="button" class="btn-price-chip" data-delta="5">+ $5.00</button>
+        </div>
+
+        <!-- Live Converted Price Display in Current Currency -->
+        <div class="live-converted-price-card">
+          <div class="converted-label">
+            <span>Price in Current Diner Currency (<strong class="active-currency-code" id="adjustCurrentCurrencyCode">USD</strong>):</span>
+          </div>
+          <div class="converted-value-large" id="adjustLiveConvertedPrice">$18.50</div>
+          <p class="converted-subtext">✨ Automatically updates customer menu cards, active order totals, and owner gross metrics.</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" id="cancelAdjustPriceBtn">Cancel</button>
+        <button class="btn-primary-glow" id="saveAdjustPriceBtn">
+          <span>✓ Update Price in All Currencies</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       INTERACTIVE RECEIPT & INVOICE MODAL
+       ==================================================================== -->
+  <div class="modal-overlay" id="receiptModal">
+    <div class="modal-card receipt-modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="chef-role-pill">🧾 Official Culinary Invoice</span>
+          <h2>Guest Dining &amp; Delivery Receipt</h2>
+          <p class="hint-text" style="margin-top:0.25rem;">Multi-currency itemized bill &amp; verified dispatch slip.</p>
+        </div>
+        <button class="modal-close-btn" id="closeReceiptModalBtn">&times;</button>
+      </div>
+
+      <!-- Printable Receipt Slip -->
+      <div class="receipt-slip-container" id="printableReceipt">
+        <div class="receipt-cutout-top"></div>
+
+        <div class="receipt-brand-header">
+          <div class="receipt-brand-logo">🥘</div>
+          <h3>MAA CHIEF KITCHEN</h3>
+          <p class="receipt-tagline">HOMESTYLE GOURMET &amp; ARTISAN CULINARY HEARTH</p>
+          <div class="receipt-kitchen-address" id="receiptKitchenAddress">
+            42 Culinary Boulevard, Level 2, Artisan Food Plaza, Downtown District, NY 10012
+          </div>
+          <div class="receipt-helpline" id="receiptKitchenPhone">Helpline: +1 (555) 789-2433</div>
+        </div>
+
+        <div class="receipt-divider-dashed"></div>
+
+        <!-- Receipt Metadata Grid -->
+        <div class="receipt-meta-grid">
+          <div>
+            <span class="meta-label">RECEIPT NO:</span>
+            <strong id="receiptId">#MCK-82910</strong>
+          </div>
+          <div>
+            <span class="meta-label">ORDER REF:</span>
+            <strong id="receiptOrderId">#ORD-101</strong>
+          </div>
+          <div>
+            <span class="meta-label">DATE &amp; TIME:</span>
+            <span id="receiptDateTime">Oct 16, 2026 • 19:45 PM</span>
+          </div>
+          <div>
+            <span class="meta-label">SERVICE TYPE:</span>
+            <span class="receipt-pill-type" id="receiptDiningType">🛵 Home Delivery</span>
+          </div>
+        </div>
+
+        <!-- Delivery Destination Block (Shown for Home Delivery) -->
+        <div class="receipt-dest-block" id="receiptDeliveryBlock" style="display:none;">
+          <div class="dest-block-title">🛵 HOME DELIVERY DESTINATION</div>
+          <div class="dest-address" id="receiptDeliveryAddress">742 Evergreen Terrace, Apt 4B</div>
+          <div class="dest-phone">📞 Contact Phone: <strong id="receiptDeliveryPhone">+1 555-0199</strong></div>
+          <div class="dest-notes" id="receiptDeliveryNotes" style="display:none;">💬 Note: Leave at front door</div>
+        </div>
+
+        <div class="receipt-divider-dashed"></div>
+
+        <!-- Itemized Table -->
+        <div class="receipt-items-wrap">
+          <table class="receipt-table">
+            <thead>
+              <tr>
+                <th style="text-align: left;">ITEM / SPECIALTY</th>
+                <th style="text-align: center;">QTY</th>
+                <th style="text-align: right;">PRICE</th>
+                <th style="text-align: right;">TOTAL</th>
+              </tr>
+            </thead>
+            <tbody id="receiptItemsBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="receipt-divider-dashed"></div>
+
+        <!-- Financial Summary Breakdown -->
+        <div class="receipt-summary-box">
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <strong id="receiptSubtotal">$0.00</strong>
+          </div>
+          <div class="summary-line" id="receiptDeliveryRow" style="display:none;">
+            <span>🛵 Home Delivery Fee</span>
+            <span id="receiptDeliveryFee">$2.50</span>
+          </div>
+          <div class="summary-line">
+            <span>Service &amp; Tax (10%)</span>
+            <span id="receiptTax">$0.00</span>
+          </div>
+          <div class="summary-line" id="receiptTipRow" style="display:none;">
+            <span>Kitchen Gratuity / Tip</span>
+            <span id="receiptTip">$0.00</span>
+          </div>
+          <div class="receipt-divider-solid"></div>
+          <div class="summary-line total-line">
+            <span>TOTAL AMOUNT PAID</span>
+            <strong class="receipt-grand-total" id="receiptGrandTotal">$0.00</strong>
+          </div>
+          <div class="receipt-currency-notice" id="receiptCurrencyNotice">
+            Settled in: <strong>🇺🇸 USD ($)</strong> • Live Forex Multi-Currency Engine
+          </div>
+        </div>
+
+        <!-- Barcode Simulation & Verification Footer -->
+        <div class="receipt-footer-stamp">
+          <div class="receipt-barcode-visual">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="receipt-barcode-number" id="receiptBarcodeNumber">82910-MAA-CHIEF-2026</div>
+          <p class="receipt-thank-you">🌟 Thank you for ordering with Maa Chief Kitchen! Cooked fresh to order with authentic passion.</p>
+        </div>
+
+        <div class="receipt-cutout-bottom"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" id="closeReceiptModalBtn2">Close</button>
+        <button class="btn-secondary" id="copyReceiptTextBtn">📋 Copy Summary</button>
+        <button class="btn-primary-glow" id="printReceiptBtn">
+          <span>🖨️ Print / Save Receipt</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       LIVE DELIVERY RIDER ROUTE & GPS SIMULATOR MODAL
+       ==================================================================== -->
+  <div class="modal-overlay" id="deliveryGpsModal">
+    <div class="modal-card delivery-gps-modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="chef-role-pill" style="background: linear-gradient(135deg, #f59e0b, #ef4444); color: #fff;">🛵 Live GPS Delivery Route</span>
+          <h2 id="gpsModalTitle">Tracking Delivery for Order #ORD-101</h2>
+          <p class="hint-text" style="margin-top:0.25rem;">Watch real-time rider progression from Maa Chief Kitchen to your doorstep.</p>
+        </div>
+        <button class="modal-close-btn" id="closeDeliveryGpsModalBtn">&times;</button>
+      </div>
+
+      <!-- Rider Profile Card -->
+      <div class="rider-profile-bar">
+        <div class="rider-avatar-wrap">
+          <div class="rider-avatar">🛵</div>
+          <span class="rider-online-dot"></span>
+        </div>
+        <div class="rider-details">
+          <div class="rider-name-row">
+            <h4>Kabir Sharma</h4>
+            <span class="rider-rating">⭐ 4.96 (740+ trips)</span>
+          </div>
+          <p class="rider-vehicle">Electric Cargo Scooter #42 • Heated Thermal Container (65°C ♨️)</p>
+        </div>
+        <div class="rider-action-col">
+          <button class="btn-call-rider" id="callRiderBtn" title="Call Delivery Rider">
+            <span>📞 Call Rider</span>
+          </button>
+          <span class="safety-badge">✓ Vaccinated &amp; Inspected</span>
+        </div>
+      </div>
+
+      <!-- Live Interactive Route Map Canvas / Visualizer -->
+      <div class="delivery-map-visualizer">
+        <div class="map-bg-grid"></div>
+
+        <!-- Top Route Waypoint Badges -->
+        <div class="map-hud-top">
+          <div class="map-hud-item">
+            <span class="hud-label">DISPATCH HUB</span>
+            <strong id="gpsHubName">Maa Chief Kitchen</strong>
+          </div>
+          <div class="map-eta-badge" id="gpsEtaBadge">
+            <span class="eta-pulse"></span>
+            <span id="gpsEtaText">Arriving in ~18 mins</span>
+          </div>
+          <div class="map-hud-item" style="text-align: right;">
+            <span class="hud-label">DESTINATION</span>
+            <strong id="gpsDestName">Customer Home</strong>
+          </div>
+        </div>
+
+        <!-- Stylized Road Line with Moving Rider -->
+        <div class="map-road-track-container">
+          <div class="road-track-line">
+            <div class="road-track-fill" id="gpsRoadFill" style="width: 35%;"></div>
+          </div>
+
+          <!-- Origin Pin -->
+          <div class="map-pin-marker pin-origin" title="Kitchen Dispatch Hub">
+            <div class="pin-bubble">🥘 Hub</div>
+            <div class="pin-dot"></div>
+          </div>
+
+          <!-- Moving Scooter Marker -->
+          <div class="map-scooter-marker" id="gpsScooterMarker" style="left: 35%;">
+            <div class="scooter-pulse-ring"></div>
+            <div class="scooter-icon-bubble">🛵</div>
+            <div class="scooter-speed-tag" id="gpsSpeedTag">32 km/h</div>
+          </div>
+
+          <!-- Destination Pin -->
+          <div class="map-pin-marker pin-destination" title="Delivery Address">
+            <div class="pin-bubble">🏠 Home</div>
+            <div class="pin-dot"></div>
+          </div>
+        </div>
+
+        <!-- Bottom Route Details Bar -->
+        <div class="map-hud-bottom">
+          <div class="hud-stage-message">
+            <span id="gpsStageIcon">🛵</span>
+            <strong id="gpsStageHeadline">Cruising down Artisan Boulevard</strong>
+            <span id="gpsStageSubtext" style="color: var(--text-dim); margin-left: 0.4rem;">• 1.6 km remaining to destination</span>
+          </div>
+          <div class="hud-progress-meter">
+            <span id="gpsProgressPct">35% Route Complete</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Waypoints Stepper -->
+      <div class="delivery-waypoints-row">
+        <div class="waypoint-item completed" id="wp1">
+          <div class="wp-icon">✓</div>
+          <div class="wp-text">
+            <strong>Kitchen Handover</strong>
+            <span>Freshly packed &amp; sealed</span>
+          </div>
+        </div>
+        <div class="waypoint-item current" id="wp2">
+          <div class="wp-icon">🛵</div>
+          <div class="wp-text">
+            <strong>On The Way</strong>
+            <span>Cruising main route</span>
+          </div>
+        </div>
+        <div class="waypoint-item" id="wp3">
+          <div class="wp-icon">📍</div>
+          <div class="wp-text">
+            <strong>In Neighborhood</strong>
+            <span>Approaching street</span>
+          </div>
+        </div>
+        <div class="waypoint-item" id="wp4">
+          <div class="wp-icon">🎉</div>
+          <div class="wp-text">
+            <strong>Delivered</strong>
+            <span>Handed to guest</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Simulator Interactive Controls -->
+      <div class="simulator-controls-bar">
+        <span class="sim-label">⚡ Live Route Simulation Controls:</span>
+        <div class="sim-btns">
+          <button type="button" class="btn-sim-action" id="simAdvanceStageBtn">⏩ Advance Stage</button>
+          <button type="button" class="btn-sim-action" id="simInstantDeliverBtn">🎉 Fast-Forward Delivery</button>
+          <button type="button" class="btn-sim-action" id="simResetRouteBtn">🔄 Reset Journey</button>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" id="closeDeliveryGpsModalBtn2">Close Map</button>
+        <button class="btn-primary-glow" id="gpsViewReceiptBtn">
+          <span>🧾 View Order Invoice</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen Celebration Confetti Canvas -->
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
